@@ -25,5 +25,5 @@
 
   # Get the environment variables from CircleCI and add to the EC2 instance
   roles:
-    - configuration-server
-    - configuration-prometheus-node-exporter
+    - configure-server
+    - configure-prometheus-node-exporter
