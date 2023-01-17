@@ -278,6 +278,7 @@ jobs:
     steps:
       - checkout
       - install_awscli
+      - install_ansible
       - install_nodejs
       - add_ssh_keys:
           fingerprints: ["50:70:ee:a9:fa:b9:75:2f:75:26:b6:c0:48:32:6c:d6"]
@@ -291,12 +292,11 @@ jobs:
             cd backend
             npm install
       - run:
-          name: package backend
+          name: Package Backend
           command: |
             cd backend
             npm run build
             tar -czf artifact.tar.gz dist/* package*
-
             cd ..
             cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
       - run:
@@ -304,11 +304,12 @@ jobs:
           command: |
             export TYPEORM_MIGRATIONS_DIR=./migrations
             export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
-            export TYPEORM_MIGRATIONS=./mirgrations/*.ts
-
+            export TYPEORM_MIGRATIONS=./migrations/*.ts
             cd .circleci/ansible
             cat inventory.txt
-            ansible-playbook -i inventory.txt deploy-backend.yml 
+            ansible-playbook -i inventory.txt deploy-backend.yml
+      - destroy-environment
+      - revert-migrations 
 
 #   smoke-test:
 #     docker:
