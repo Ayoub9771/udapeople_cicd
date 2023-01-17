@@ -221,14 +221,13 @@ jobs:
             npm install
             npm audit fix --force --audit-level=critical
             npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=moderate
+            npm audit fix --force --audit-level=moderate
+            npm audit fix --force --audit-level=high
+            npm audit fix --force --audit-level=high
             npm audit --audit-level=critical
+            npm audit --audit-level=high
+            npm audit --audit-level=moderate
             npm run migrations > migrations_dump.txt
             
       - run:
