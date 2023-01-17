@@ -51,8 +51,7 @@ commands:
             then
               cd ~/project/backend
               npm install
-              npm run migration:revert
-              exit 
+              npm run migration:revert 
             fi
             
 jobs:
@@ -220,6 +219,7 @@ jobs:
             cd backend
             npm install
             npm install
+            npm audit fix --force --audit-level=critical
             npm audit fix --force --audit-level=critical
             npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
