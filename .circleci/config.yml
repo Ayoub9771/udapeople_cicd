@@ -1,7 +1,6 @@
 version: 2.1
 
 orbs: 
-  slack: circleci/slack@4.10.1
   aws-cli: circleci/aws-cli@3.1.1
 
 commands:
@@ -144,12 +143,9 @@ jobs:
             cd frontend
             npm install
             npm audit fix --audit-level=critical --force
+            npm audit fix --audit-level=critical --force
             npm audit --audit-level=critical
-      - slack/notify:
-          channel: $SLACK_DEFAULT_CHANNEL
-          event: fail
-          template: basic_fail_1
-          
+
   scan-backend:
     docker:
       # Docker image here
@@ -169,10 +165,7 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --audit-level=critical --force
             npm audit --audit-level=critical
-      - slack/notify:
-          channel: $SLACK_DEFAULT_CHANNEL
-          event: fail
-          template: basic_fail_1
+
 
   deploy-infrastructure:
     docker:
