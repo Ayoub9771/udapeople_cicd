@@ -300,7 +300,7 @@ jobs:
 
             cd ..
             cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
-            ls
+            ls -la
       - run:
           name: Deploy backend
           command: |
